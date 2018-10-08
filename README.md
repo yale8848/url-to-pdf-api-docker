@@ -19,6 +19,7 @@
   
 ## addition
 
+- docker container localtime is set to 'Asia/Shanghai'
 - and some chinese fonts in container
 - modify  url-to-pdf-api code
   - if page use Mathjax, render page after Mathjax render finish
