@@ -1,1 +1,1 @@
-docker build -t yale8848/url-to-pdf-api .
+docker build -t yale8848/url-to-pdf-api-docker .
