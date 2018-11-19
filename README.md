@@ -7,13 +7,13 @@
 - chromium_revision: 571375
 
 ## docker run
-
-  - wget https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/571375/chrome-linux.zip  -P ./chrome
+ 
   - docker pull yale8848/url-to-pdf-api-docker
   - mkdir logs && docker run --name url2pdf -d --restart=always -p 9000:9000 -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker
   
 ## docker build
 
+- wget https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/571375/chrome-linux.zip  -P ./chrome
 - docker build -t url2pdf .
   
 ## addition
