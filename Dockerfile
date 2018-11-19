@@ -10,21 +10,16 @@ RUN mkdir /root/url-to-pdf-api
 COPY url-to-pdf-api/package.json /root/url-to-pdf-api    
 WORKDIR /root/url-to-pdf-api
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-
 RUN npm install --registry=http://registry.npm.taobao.org
 
 COPY url-to-pdf-api /root/url-to-pdf-api 
 COPY fonts /usr/share/fonts/win
-COPY chrome/chrome-linux.zip /usr/local
-RUN mkdir /usr/local/chrome && unzip /usr/local/chrome-linux.zip -d /usr/local && chmod 777 /usr/local/chrome-linux/chrome && \
-    rm -f /usr/local/chrome-linux.zip && \
-    chmod 644 /usr/share/fonts/win/* && mkfontscale && mkfontdir && fc-cache -fv && \
+
+RUN chmod 644 /usr/share/fonts/win/* && mkfontscale && mkfontdir && fc-cache -fv && \
     /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 
 ENV DEBUG_MODE=false \
     ALLOW_HTTP=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/local/chrome-linux/chrome \
     HOST=0.0.0.0 \ 
     LOG_PATH=/root/logs
 
