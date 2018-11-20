@@ -12,19 +12,7 @@ WORKDIR /root/url-to-pdf-api
 
 RUN npm install --registry=http://registry.npm.taobao.org
 
-COPY url-to-pdf-api /root/url-to-pdf-api 
 COPY fonts /usr/share/fonts/win
 
 RUN chmod 644 /usr/share/fonts/win/* && mkfontscale && mkfontdir && fc-cache -fv && \
     /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
-
-ENV DEBUG_MODE=false \
-    ALLOW_HTTP=true \
-    HOST=0.0.0.0 \ 
-    LOG_PATH=/root/logs
-
-WORKDIR /root/url-to-pdf-api
-
-EXPOSE 9000
-
-CMD [ "npm", "start"]
