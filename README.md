@@ -4,7 +4,6 @@
 
 - url-to-pdf-api: https://github.com/yale8848/url-to-pdf-api 
 - puppeteer: 1.6.0
-- chromium_revision: 571375
 
 ## docker run
  
@@ -43,3 +42,7 @@
         </div>
     </pdf-render-footer>
     ``` 
+
+## tips
+
+- use dumb-init to start docker container to avoid zombie chrome process (https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker)
