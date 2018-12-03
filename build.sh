@@ -1,1 +1,1 @@
-docker build -t yale8848/url-to-pdf-api-docker .
+docker build -t yale8848/url-to-pdf-api-docker:dumb-init .
