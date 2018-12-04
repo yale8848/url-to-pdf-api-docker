@@ -169,23 +169,11 @@ async function render(_opts = {}) {
         logger.info(" Wait MathJax " + wait);
         if (wait) {
             try {
-                await page.waitForFunction('window.pdfRenderIsMathJaxRenderFinish  == 1', { polling: 100, timeout: 300000 });
+                await page.waitForFunction('window.pdfRenderIsMathJaxRenderFinish  == 1', { polling: 50, timeout: 20000 });
             } catch (e) {
                 logger.info('window.pdfRenderIsMathJaxRenderFinish timeout :' + e.toString());
             }
-
-            var sleep = async function() {
-                return new Promise((res, ref) => {
-                    setTimeout(() => {
-                        res();
-                    }, 300)
-                });
-            }
-            await sleep();
         }
-
-
-
         const header = await page.$$eval('pdf-render-header', headers => {
             if (headers.length > 0) {
                 return headers[0].innerHTML.replace(/\s/, "").replace(/\r\n/, "").replace(/[\r|\n]/, "").replace(/ +/, "");
