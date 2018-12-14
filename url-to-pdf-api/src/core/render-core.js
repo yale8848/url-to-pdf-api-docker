@@ -54,11 +54,16 @@ async function render(_opts = {}) {
 
     logOpts(opts);
 
+    let args = ['--disable-gpu', '--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--disable-dev-profile', '--disable-extensions', '--disable-sync'];
+    if (config.SINGLE_PROCESS) {
+        args.push('--single-process');
+    }
     const browser = await puppeteer.launch({
         ignoreHTTPSErrors: true,
-        args: ['--disable-gpu', '--no-sandbox', '--disable-setuid-sandbox'],
+        args: args,
         sloMo: config.DEBUG_MODE ? 250 : undefined,
     });
+
     const page = await browser.newPage();
 
     //Yale: do not show PAGE LOG
