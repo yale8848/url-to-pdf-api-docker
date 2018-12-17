@@ -113,7 +113,7 @@ async function render(_opts = {}) {
             // https://github.com/GoogleChrome/puppeteer/issues/728
             await page.goto(`data:text/html;charset=UTF-8,${opts.html}`, opts.goto);
         } else {
-            logger.info(`Goto url ${opts.url} ..`);
+            logger.info(`Goto url: ${opts.url} ..`);
             await page.goto(opts.url, opts.goto);
         }
 
@@ -171,7 +171,7 @@ async function render(_opts = {}) {
 
         });
 
-        logger.info(" Wait MathJax " + wait);
+        //logger.info(" Wait MathJax " + wait);
         if (wait) {
             try {
                 await page.waitForFunction('window.pdfRenderIsMathJaxRenderFinish  == 1', { polling: 50, timeout: 20000 });
@@ -225,10 +225,12 @@ async function render(_opts = {}) {
         logger.error(err.stack);
         throw err;
     } finally {
-        logger.info('Closing browser..');
-        if (!config.DEBUG_MODE) {
-            await browser.close();
-        }
+        //logger.info('Closing browser..');
+        //if (!config.DEBUG_MODE) {
+        //   await browser.close();
+        //}
+        logger.info(`render finish url: ${opts.url} `);
+        await browser.close();
     }
 
     return data;
