@@ -39,4 +39,4 @@ server.on('close', () => {
     setTimeout(process.exit, 100);
 });
 
-clear.StartClearFontCache('/var/cache/fontconfig', 60, config.CLEAR_CACHE_TIME ? config.CLEAR_CACHE_TIME : 60);
+clear.StartClearFontCache('/var/cache/fontconfig', 60, config.CLEAR_CACHE_TIME ? config.CLEAR_CACHE_TIME : 300);
