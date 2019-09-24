@@ -13,7 +13,7 @@ Clear.prototype.StartClearFontCache = function(folder, timeGapSeconds, fileExpSe
         clearInterval(this.fontCacheInterval);
     }
     this.fontCacheInterval = setInterval(function() {
-
+        //console.log('fontCacheInterval');
         fs.readdir(folder, function(err, files) {
             if (err) {
                 console.log(err);
@@ -27,7 +27,9 @@ Clear.prototype.StartClearFontCache = function(folder, timeGapSeconds, fileExpSe
                             const isFile = stats.isFile();
                             if (isFile && (new Date().getTime()) - stats.mtime.getTime() > fileExpSeconds * 1000) {
                                 fs.unlink(filedir, (e) => {
-                                    if (e) console.log(e);
+                                    if (e) { console.log(e); } else {
+                                        //console.log(filedir);
+                                    }
                                 });
                             }
                         }
@@ -36,7 +38,7 @@ Clear.prototype.StartClearFontCache = function(folder, timeGapSeconds, fileExpSe
             }
         });
 
-    }, timeGapSeconds);
+    }, timeGapSeconds * 1000);
 
 };
 
