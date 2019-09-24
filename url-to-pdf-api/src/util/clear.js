@@ -40,4 +40,4 @@ Clear.prototype.StartClearFontCache = function(folder, timeGapSeconds, fileExpSe
 
 };
 
-module.exports = Clear
+module.exports = new Clear();
