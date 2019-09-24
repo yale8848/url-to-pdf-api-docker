@@ -11,7 +11,8 @@ const config = {
     LOG_PATH: process.env.LOG_PATH,
     LOG_MAX_SIZE: process.env.LOG_MAX_SIZE,
     LOG_MAX_FILE: process.env.LOG_MAX_FILE,
-    SINGLE_PROCESS: process.env.SINGLE_PROCESS === 'true'
+    SINGLE_PROCESS: process.env.SINGLE_PROCESS === 'true',
+    CLEAR_CACHE_TIME: process.env.CLEAR_CACHE_TIME
 
 };
 
