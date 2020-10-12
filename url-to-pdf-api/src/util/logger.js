@@ -4,6 +4,8 @@ const _ = require('lodash');
 const config = require('../config');
 const date = require('./date');
 
+const showLog = config.SHOW_LOG;
+
 const COLORIZE = config.NODE_ENV === 'development';
 
 
@@ -54,18 +56,30 @@ function createLogger(filePath) {
     }
 
     logger.prototype.info = function(v) {
+        if (!showLog) {
+            return;
+        }
         info.info(v);
     };
     logger.prototype.error = function(v) {
         error.error(v);
     };
     logger.prototype.log = function(type, v) {
+        if (!showLog) {
+            return;
+        }
         this.info(type + " " + v);
     };
     logger.prototype.warn = function(v) {
+        if (!showLog) {
+            return;
+        }
         this.info(v);
     };
     logger.prototype.debug = function(v) {
+        if (!showLog) {
+            return;
+        }
         this.info(v);
     };
 

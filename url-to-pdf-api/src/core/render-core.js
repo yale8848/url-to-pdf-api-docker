@@ -174,9 +174,9 @@ async function render(_opts = {}) {
         //logger.info(" Wait MathJax " + wait);
         if (wait) {
             try {
-                await page.waitForFunction('window.pdfRenderIsMathJaxRenderFinish  == 1', { polling: 50, timeout: 20000 });
+                await page.waitForFunction('window.pdfRenderIsMathJaxRenderFinish  == 1', { polling: 10, timeout: 20000 });
             } catch (e) {
-                logger.info('window.pdfRenderIsMathJaxRenderFinish timeout :' + e.toString());
+                logger.error('window.pdfRenderIsMathJaxRenderFinish timeout :' + e.toString());
             }
         }
         const header = await page.$$eval('pdf-render-header', headers => {
@@ -203,9 +203,20 @@ async function render(_opts = {}) {
             opts.pdf.footerTemplate = footer;
         }
 
+        var waitRenderStart = await page.evaluate(() => {
+            return window._waitRendPdftoStart_ != undefined;
+        });
+
+        if (waitRenderStart) {
+            try {
+                await page.waitForFunction('window._waitRendPdftoStart_  == 1', { polling: 10, timeout: 20000 });
+            } catch (e) {
+                logger.error('window._waitRendPdftoStart_ timeout :' + e.toString());
+            }
+        }
         //end add
 
-        logger.info('Rendering ..');
+        //logger.info('Rendering ..');
         if (opts.output === 'pdf') {
             data = await page.pdf(opts.pdf);
         } else {
