@@ -7,13 +7,13 @@
 
 ## docker run
  
-  - docker pull yale8848/url-to-pdf-api-docker:latest
-  - mkdir logs && docker run --name url2pdf -d --restart=always -p 9000:9000 -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker:latest
+  - docker pull yale8848/url-to-pdf-api-docker:v1.1
+  - mkdir logs && docker run --name url2pdf -d --restart=always -p 9000:9000 -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker:v1.1
 
 ## docker run SINGLE_PROCESS launch chrome
 
 
-docker run --name url2pdf -d --restart=always -p 9000:9000 `-e SINGLE_PROCESS=true` `-e SHOW_LOG=true` -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker:latest
+docker run --name url2pdf -d --restart=always -p 9000:9000 `-e SINGLE_PROCESS=true` `-e SHOW_LOG=true` -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker:v1.1
 
 
 ## docker build
