@@ -5,7 +5,7 @@ const config = require('../config');
 const date = require('./date');
 
 const COLORIZE = config.NODE_ENV === 'development';
-
+const showLog = config.SHOW_LOG;
 
 function createLogger(filePath) {
 
@@ -22,7 +22,7 @@ function createLogger(filePath) {
                 filename: path.join(config.LOG_PATH, 'info.log'),
                 level: 'info',
                 maxsize: '1000000',
-                maxFiles: '100',
+                maxFiles: '10',
                 timestamp: function() {
                     return new date().Format("yyyy-MM-dd hh:mm:ss");
                 },
@@ -41,7 +41,7 @@ function createLogger(filePath) {
                 filename: path.join(config.LOG_PATH, 'error.log'),
                 level: 'error',
                 maxsize: '1000000',
-                maxFiles: '100',
+                maxFiles: '10',
                 timestamp: function() {
                     return new date().Format("yyyy-MM-dd hh:mm:ss");
                 },
@@ -54,18 +54,30 @@ function createLogger(filePath) {
     }
 
     logger.prototype.info = function(v) {
+        if (!showLog) {
+            return;
+        }
         info.info(v);
     };
     logger.prototype.error = function(v) {
         error.error(v);
     };
     logger.prototype.log = function(type, v) {
+        if (!showLog) {
+            return;
+        }
         this.info(type + " " + v);
     };
     logger.prototype.warn = function(v) {
+        if (!showLog) {
+            return;
+        }
         this.info(v);
     };
     logger.prototype.debug = function(v) {
+        if (!showLog) {
+            return;
+        }
         this.info(v);
     };
 

@@ -13,7 +13,7 @@
 ## docker run SINGLE_PROCESS launch chrome
 
 
-docker run --name url2pdf -d --restart=always -p 9000:9000 `-e SINGLE_PROCESS=true` -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker:latest
+docker run --name url2pdf -d --restart=always -p 9000:9000 `-e SINGLE_PROCESS=true` `-e SHOW_LOG=true` -v `pwd`/logs:/root/logs yale8848/url-to-pdf-api-docker:latest
 
 
 ## docker build
@@ -48,6 +48,17 @@ docker run --name url2pdf -d --restart=always -p 9000:9000 `-e SINGLE_PROCESS=tr
         </div>
     </pdf-render-footer>
     ``` 
+  -  js code start call render
+  
+     ```
+      window._waitRendPdftoStart_ = 0; //call most early
+
+
+      window._waitRendPdftoStart_ = 1; //  call start render; timeout 20 s
+    
+     ```
+  
+
 
 ## tips
 
